@@ -12,7 +12,7 @@ export default function HomePage() {
     <>
       <Hero />
       <About />
-      <Skills />
+      {/* <Skills /> */}
       <Services />
       <Projects />
       <Testimonials />

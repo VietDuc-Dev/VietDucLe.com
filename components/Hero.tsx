@@ -5,7 +5,7 @@ import TrustSignals from "./common/TrustSignals";
 
 export default function Hero() {
   return (
-    <section className="relative bg-muted">
+    <section className="relative">
       <Container>
         <div className="container grid grid-cols-1 lg:grid-cols-3 items-center py-20 gap-10">
           <div className="col-span-2 space-y-2">
