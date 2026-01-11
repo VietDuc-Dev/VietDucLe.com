@@ -7,21 +7,19 @@ export const headerData = [
   { title: "Liên hệ", href: "/contact" },
 ];
 export const quickLinksData = [
-  { title: "About us", href: "/about" },
-  { title: "Contact us", href: "/contact" },
-  { title: "Terms & Conditions", href: "/terms" },
-  { title: "Privacy Policy", href: "/privacy" },
-  { title: "FAQs", href: "/faqs" },
-  { title: "Help", href: "/help" },
+  { title: "Giới thiệu", href: "/about" },
+  { title: "Dịch vụ", href: "/service" },
+  { title: "Dự án", href: "/project" },
+  { title: "Bài đăng", href: "/blog" },
+  { title: "Liên hệ", href: "/contact" },
 ];
 export const categoriesData = [
-  { title: "Mobiles", href: "mobiles" },
-  { title: "Appliances", href: "appliances" },
-  { title: "Smartphones", href: "smartphones" },
-  { title: "Air Conditioners", href: "air-conditioners" },
-  { title: "Washing Machine", href: "washing-machine" },
-  { title: "Kitchen Appliances", href: "kitchen-appliances" },
-  { title: "gadget accessories", href: "gadget-accessories" },
+  { title: "Thiết kế website", href: "/service" },
+  { title: "Marketing Online", href: "service" },
+  { title: "Bảo trì và nâng cấp", href: "service" },
+  { title: "Google Map", href: "service" },
+  { title: "Thiết kế đồ họa", href: "service" },
+  { title: "Chăm sóc website - Fanpage", href: "service" },
 ];
 export const productType = [
   { title: "Gadget", value: "gadget" },
