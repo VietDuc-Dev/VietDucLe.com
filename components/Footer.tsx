@@ -1,3 +1,5 @@
+"use client";
+
 import Container from "./Container";
 import FooterTop from "./common/FooterTop";
 import Logo from "./common/Logo";
@@ -5,21 +7,26 @@ import SocialMedia from "./common/SocialMedia";
 import { SubText, SubTitle } from "./ui/text";
 import { categoriesData, quickLinksData } from "@/constants/data";
 import Link from "next/link";
+import { motion, easeOut } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t">
+    <motion.footer
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: easeOut }}
+      className="bg-white border-t"
+    >
       <Container>
         <FooterTop />
         <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
             <Logo />
-            <SubText>
-              Giải pháp Marketing Online Toàn diện cho doanh nghiệp. <br />
-              Xây dựng Website giúp tăng khách hàng - tối ưu chi phí • Tăng
-              chuyển đổi • Tối ưu chi phí quảng cáo • Website chuẩn SEO - bảo
-              mật
-              <br /> Google Ads • Facebook Ads • TikTok Ads
+            <SubText className="space-y-1">
+              <p>• Thiết kế Website chuẩn SEO</p>
+              <p>• Tối ưu chuyển đổi & chi phí quảng cáo</p>
+              <p>• Google Ads • Facebook Ads • TikTok Ads</p>
             </SubText>
             <SocialMedia
               className="text-darkColor/60"
@@ -70,11 +77,10 @@ export default function Footer() {
         </div>
         <div className="py-6 border-t text-center text-sm text-gray-600">
           <div>
-            © {new Date().getFullYear()} <Logo className="text-sm" />. All
-            rights reserved.
+            © {new Date().getFullYear()} vietducle.com. All rights reserved.
           </div>
         </div>
       </Container>
-    </footer>
+    </motion.footer>
   );
 }

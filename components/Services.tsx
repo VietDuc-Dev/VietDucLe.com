@@ -1,89 +1,115 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
 import Container from "./Container";
 import Image from "next/image";
+import { motion, type Variants } from "framer-motion";
+
 import Design from "@/public/design.svg";
 import Marketing from "@/public/marketing.svg";
 import Help from "@/public/help.svg";
 import Map from "@/public/map.svg";
 import Pen from "@/public/pen.svg";
-import Scurity from "@/public/scurity.svg";
+import Security from "@/public/scurity.svg";
+import CardService from "./common/CardService";
 
 const services = [
   {
     icon: Design,
     title: "Thiết kế Website",
     description:
-      "Thiết kế web đẹp, chuyên nghiệp với chi phí hợp lý cùng dịch vụ bảo hành và hậu mãi chu đáo luôn mang đến sự hài lòng cho khách hàng…",
+      "Thiết kế website chuẩn UI/UX, tối ưu tốc độ và SEO, giúp doanh nghiệp xây dựng hình ảnh chuyên nghiệp và tăng tỷ lệ chuyển đổi khách hàng.",
   },
   {
     icon: Marketing,
     title: "Marketing Online",
     description:
-      "Cung cấp giải pháp Affiliate Marketing giúp doanh nghiệp tăng doanh thu, mở rộng thị trường và tối ưu chi phí quảng cáo. Facebook Ads - Google Ads - Tiktok Ads",
+      "Giải pháp marketing tổng thể: Facebook Ads, Google Ads, TikTok Ads giúp tiếp cận đúng khách hàng, tối ưu chi phí và tăng trưởng doanh thu bền vững.",
   },
   {
-    icon: Scurity,
-    title: "Bảo trì & nâng cấp",
+    icon: Security,
+    title: "Bảo trì & Nâng cấp",
     description:
-      "Hỗ trợ khách hàng liên tục 24/7 Nâng cấp tính năng cải thiện website Chứng chỉ bảo mật SSL tiểu chuẩn an ninh công nghệ toàn cầu.",
+      "Hỗ trợ kỹ thuật 24/7, nâng cấp tính năng, vá lỗi và bảo mật SSL giúp website vận hành ổn định, an toàn và hiệu quả lâu dài.",
   },
   {
     icon: Help,
-    title: "Chăm sóc Website - Fanpage",
+    title: "Chăm sóc Website & Fanpage",
     description:
-      "Việc lựa chọn dịch vụ chăm sóc website phù hợp sẽ giúp doanh nghiệp tiết kiệm thời gian, tăng cường bảo mật và nâng cao hiệu quả kinh doanh.",
+      "Quản trị nội dung, cập nhật hình ảnh, bài viết và tương tác fanpage giúp doanh nghiệp duy trì hình ảnh và kết nối khách hàng hiệu quả.",
   },
   {
     icon: Map,
-    title: "Googgle Maps",
+    title: "Google Maps",
     description:
-      "Tôi cung cấp giải pháp xây dựng Google Maps chuyên nghiệp từ A đến Z, bao gồm tạo mới, xác minh và quảng bá, giúp doanh nghiệp tiếp cận nhiều khách hàng hơn.",
+      "Xây dựng và tối ưu Google Maps từ A–Z, tăng khả năng hiển thị địa phương và thu hút khách hàng tiềm năng gần bạn.",
   },
   {
     icon: Pen,
-    title: "Thiết kế đồ họa",
+    title: "Thiết kế Đồ họa",
     description:
-      "Bạn mong muốn banner, poster, logo, ... thiết kế đa dạng phong cách, bắt mắt, ấn tượng và hoàn hảo nhất nhằm gia tăng tính cạnh tranh cho sản phẩm của bạn!",
+      "Thiết kế banner, poster, logo, ấn phẩm truyền thông sáng tạo, nhất quán thương hiệu và nổi bật giữa thị trường cạnh tranh.",
   },
 ];
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
 
 export default function Services() {
   return (
     <Container>
-      <section className="container py-20">
-        <div className="mb-12 space-y-2">
-          <h2 className="text-center text-secondary text-3xl font-bold">
+      <section className="py-20">
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-14 text-center space-y-3"
+        >
+          <h2 className="text-3xl font-bold text-secondary">
             <span className="text-primary">Dịch vụ</span> của tôi
           </h2>
-
-          <p className="text-secondary text-center">
-            Tôi mong muốn đồng hành cùng bạn và doanh nghiệp của bạn, xây dựng
-            một môi trường kinh doanh lý tưởng ngay hôm nay.
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Tôi đồng hành cùng doanh nghiệp của bạn từ xây dựng nền tảng online
+            đến triển khai marketing, hướng tới tăng trưởng bền vững và hiệu
+            quả.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Services Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
           {services.map((service) => (
-            <Card key={service.title} className="p-6 bg-muted">
-              <Card className="bg-white w-fit p-2 rounded-lg">
-                <Image
-                  src={service.icon}
-                  alt="icon service"
-                  width={40}
-                  height={40}
-                  className="text-primary"
-                  priority
-                />
-              </Card>
-              <div>
-                <h3 className="font-semibold">{service.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {service.description}
-                </p>
-              </div>
-            </Card>
+            <motion.div key={service.title} variants={itemVariants}>
+              <CardService
+                icon={service.icon}
+                title={service.title}
+                description={service.description}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
     </Container>
   );

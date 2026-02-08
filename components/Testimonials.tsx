@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { easeOut, motion } from "framer-motion";
 import {
   Carousel,
   CarouselContent,
@@ -50,15 +50,28 @@ export default function Testimonials() {
   return (
     <Container>
       <section className="container py-20">
-        <h2 className="text-center text-3xl text-secondary font-bold mb-12">
-          <span className="text-primary">Khách hàng</span> nói gì?
-        </h2>
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: easeOut }}
+          className="mb-14 text-center space-y-3"
+        >
+          <h2 className="text-3xl font-bold text-secondary">
+            <span className="text-primary">Khách hàng</span> nói gì về tôi?
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Những phản hồi thực tế từ khách hàng đã sử dụng dịch vụ Website &
+            Marketing Online trong suốt nhiều năm qua.
+          </p>
+        </motion.div>
 
         <div className="mt-5 mx-10">
           <Carousel opts={{ align: "start" }} className="w-full">
             <CarouselContent>
               {TestimonialData.map((item, index) => (
-                <CarouselItem key={index} className="basis-1/3">
+                <CarouselItem key={index} className="md:basis-1/3">
                   <motion.div
                     initial={{ opacity: 0, y: 20, scale: 0.95 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}

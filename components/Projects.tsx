@@ -1,7 +1,10 @@
+"use client";
+
 import Container from "./Container";
 import { Card } from "./ui/card";
+import { motion, type Variants, easeOut } from "framer-motion";
 
-const project = [
+const projects = [
   {
     logo: "https://vnroyal.com/upload/photo/thiet-ke-chua-co-ten-1-9936.png",
     name: "Tập đoàn VN ROYAL",
@@ -64,37 +67,74 @@ const project = [
   },
 ];
 
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+      ease: easeOut,
+    },
+  },
+};
+
 export default function Projects() {
   return (
     <section className="bg-muted py-20">
       <Container>
-        <div className="container">
-          <div className="mb-12 space-y-2">
-            <h2 className="text-center text-secondary text-3xl font-bold">
-              <span className="text-primary">Khách hàng</span> tiêu biểu
-            </h2>
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: easeOut }}
+          className="mb-14 text-center space-y-3"
+        >
+          <h2 className="text-3xl font-bold text-secondary">
+            <span className="text-primary">Khách hàng</span> tiêu biểu
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Hơn 100+ doanh nghiệp, tổ chức và thương hiệu đã tin tưởng lựa chọn
+            tôi trong hành trình xây dựng và phát triển nền tảng số.
+          </p>
+        </motion.div>
 
-            <p className="text-secondary text-center">
-              Một số khách hàng tiêu biểu đã và đang tin dùng dịch vụ website
-              suốt nhiều năm qua.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
-            {project.map((item) => (
-              <Card key={item.name} className="p-6">
-                <div className="flex justify-center">
+        {/* Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5"
+        >
+          {projects.map((item) => (
+            <motion.div key={item.name} variants={itemVariants}>
+              <Card className="group h-full p-6 flex flex-col items-center justify-center gap-4 border border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/20">
+                <div className="h-16 flex items-center justify-center">
                   <img
                     src={item.logo}
-                    alt="Project"
-                    className="h-30 w-30 rounded-lg object-cover"
+                    alt={item.name}
+                    className="max-h-14 object-contain transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
                   />
                 </div>
-                <p className="text-center font-semibold">{item.name}</p>
+
+                <p className="text-xs text-center font-medium text-muted-foreground group-hover:text-secondary transition-colors">
+                  {item.name}
+                </p>
               </Card>
-            ))}
-          </div>
-        </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </Container>
     </section>
   );

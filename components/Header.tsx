@@ -9,7 +9,7 @@ import CTAContract from "./common/CTAContract";
 
 export default async function Header() {
   return (
-    <header className="sticky top-0 z-50 py-5 bg-white/70 backdrop-blur-md">
+    <header className="sticky top-0 z-50 py-2 bg-white/70 backdrop-blur-md">
       <Container className="flex items-center justify-between text-lightColor">
         <div className="w-auto flex items-center gap-2.5 justify-start md:gap-0">
           {/* <MobileMenu /> */}
